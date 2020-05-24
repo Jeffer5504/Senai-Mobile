@@ -1,70 +1,69 @@
-import React from 'react';
-import {Feather} from '@expo/vector-icons';
-import {View, Text, Image, TouchableOpacity, Linking} from 'react-native';
-import {useNavigation, useRoute} from '@react-navigation/native';
-import * as MailComposer from 'expo-mail-composer';
-import styles from './styles';
-import logoImg from '../../assets/logo.png';
+import React from "react";
+import { Feather } from "@expo/vector-icons";
+import { View, Text, Image, TouchableOpacity, Linking } from "react-native";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import * as MailComposer from "expo-mail-composer";
+import styles from "./styles";
+import logoImg from "../../assets/logo.png";
 
-export default function Detail(){
-    const navigation = useNavigation();
-    const route = useRoute();    
-    const incident = route.params.incident;    
-    const message = `Olá ${incident.name}, caso: ${incident.title}, valor: ${Intl.NumberFormat('pt-BR',{style: 'currency',currency:'BRL'}).format(incident.value)}`;
-    
-    function navigationBack(){
-        navigation.goBack();
-    }
-    function sendMail(){
-        MailComposer.composeAsync({
-            subject: `Herói do caso: ${incident.title}`,
-            recipients: [incident.email],
-            body: message,
-        })
-    }
-    function sendWhatsapp(){
-        Linking.openURL(`whatsapp://send?phone=${incident.whatsapp}&text=${message}`);
-    }
-    return(
-        <View style={styles.container}>
-            <View style={styles.header}>
-                <Image source={logoImg} />
-                <TouchableOpacity onPress={navigationBack}>
-                    <Feather name="arrow-left" size={28} color="#E82041" />
-                </TouchableOpacity>
-            </View>
-            <View style={styles.incident}>
-                <Text style={[styles.incidentProperty, {marginTop:0}]}>ONG:</Text>
-    <Text style={styles.incidentValue}>{incident.name} de {incident.city}/{incident.uf}</Text>
+export default function Detail() {
+  const navigation = useNavigation();
+  const route = useRoute();
+  const incident = route.params.incident;
+  const message = `Olá professor, gostaria de tirar algumas dúvidas desta aula`;
 
-                <Text style={styles.incidentProperty}>CASO:</Text>
-                <Text style={styles.incidentValue}>{incident.title}</Text>
+  function navigationBack() {
+    navigation.goBack();
+  }
+  function sendMail() {
+    MailComposer.composeAsync({
+      subject: `Aluno da aula : Mercado de TI, API REST`,
+      recipients: ["rafaellevissa@hotmail.com"],
+      body: message,
+    });
+  }
+  function sendWhatsapp() {
+    Linking.openURL(`whatsapp://send?phone=557192008833&text=${message}`);
+  }
+  return (
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Image source={logoImg} />
+        <TouchableOpacity onPress={navigationBack}>
+          <Feather name="arrow-left" size={28} color="#E82041" />
+        </TouchableOpacity>
+      </View>
+      <View style={styles.incident}>
+        <Text style={[styles.incidentProperty, { marginTop: 0 }]}>
+          Disciplina:
+        </Text>
+        <Text style={styles.incidentValue}>
+          Desenvolvimento de Sistemas para Dispositivos Móveis
+        </Text>
 
-                <Text style={styles.incidentProperty}>VALOR:</Text>
-                <Text style={styles.incidentValue}>
-                    {
-                        Intl.NumberFormat('pt-BR',{
-                        style: 'currency', 
-                        currency:'BRL'
-                        }).format(incident.value)
-                    }
-                </Text>
-            </View>
-            <View style={styles.contactBox}>
-                <Text style={styles.heroTitle}>Salve o dia!</Text>
-                <Text style={styles.heroTitle}>Seja o herói desse caso</Text>
-                <Text style={styles.heroDescription}>Entre em contato</Text>
+        <Text style={styles.incidentProperty}>Descrição:</Text>
+        <Text style={styles.incidentValue}>
+          Principais características do mercado de TI atualmente, dicas para
+          marketing pessoal e pricnipais conceitos do desenvolvimento web
+          moderno.
+        </Text>
 
-                <View style={styles.actions}>
-                    <TouchableOpacity style={styles.action} onPress = {sendWhatsapp}>
-                        <Text style={styles.actionText}>Whatsapp</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.action} onPress = {sendMail}>
-                        <Text style={styles.actionText}>E-mail</Text>
-                    </TouchableOpacity>
-                </View>
-                
-            </View>
+        <Text style={styles.incidentProperty}>Docente:</Text>
+        <Text style={styles.incidentValue}>Rafael Levi Costa</Text>
+      </View>
+      <View style={styles.contactBox}>
+        <Text style={styles.heroTitle}>Tire suas dúvidas desta aula:</Text>
+        <Text style={styles.heroTitle}>Entre em contato com o professor.</Text>
+
+        <View style={styles.actions}>
+          <TouchableOpacity style={styles.action} onPress={sendWhatsapp}>
+            <Text style={styles.actionText}>Whatsapp</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.action} onPress={sendMail}>
+            <Text style={styles.actionText}>E-mail</Text>
+          </TouchableOpacity>
         </View>
-    );
+      </View>
+    </View>
+  );
 }
