@@ -7,6 +7,8 @@ A aplicação consiste em permitir o cadastro de ONGs, e dos casos das mesmas pa
 
 -[App Senai](https://expo.io/artifacts/27d1ed09-8eaf-420a-965f-85a034d3ed79)
 
+Obs: Versão para Android.
+
  ## 👨🏼‍💻 Desenvolvedor 
 
 - [Jefferson Eloy](https://www.linkedin.com/in/jefferson-eloy/)
