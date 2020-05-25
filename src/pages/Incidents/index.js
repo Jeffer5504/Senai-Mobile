@@ -13,8 +13,8 @@ export default function Incidents() {
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
 
-  function navigateToDetail(incident) {
-    navigation.navigate("Detail", { incident });
+  function navigateToDetail() {
+    navigation.navigate("Detail");
   }
   async function loadIncidents() {
     if (loading) {
@@ -47,13 +47,13 @@ export default function Incidents() {
       <Text style={styles.title}>Bem-vindo aluno</Text>
       <Text style={styles.description}>Escolha um das aulas abaixo.</Text>
       <FlatList
-        data={incidents}
+        data={[1, 2, 3]}
         style={styles.incidentList}
-        keyExtractor={(incident) => String(incident.id)}
+        keyExtractor={(lessons) => String(lessons)}
         showsVerticalScrollIndicator={false}
         onEndReached={loadIncidents}
         onEndReachedThreshold={0.2}
-        renderItem={({ item: incident }) => (
+        renderItem={() => (
           <View style={styles.incident}>
             <Text style={styles.incidentProperty}>Disciplina:</Text>
             <Text style={styles.incidentValue}>
@@ -68,7 +68,7 @@ export default function Incidents() {
 
             <TouchableOpacity
               style={styles.detailsButton}
-              onPress={() => navigateToDetail(incident)}
+              onPress={() => navigateToDetail()}
             >
               <Text style={styles.detailsButtonText}>Ver mais detalhes</Text>
               <Feather name="arrow-right" size={16} color="#E02041" />

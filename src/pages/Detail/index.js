@@ -8,9 +8,7 @@ import logoImg from "../../assets/logo.png";
 
 export default function Detail() {
   const navigation = useNavigation();
-  const route = useRoute();
-  const incident = route.params.incident;
-  const message = `Olá professor, gostaria de tirar algumas dúvidas desta aula`;
+  const message = `Olá professor, gostaria de tirar algumas dúvidas desta aula Mercado de TI, API REST`;
 
   function navigationBack() {
     navigation.goBack();
